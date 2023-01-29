@@ -4,7 +4,7 @@
   "description": "A telegram bot to store links into notion",
   "main": "src/index.ts",
   "scripts": {
-    "start": "nodemon dist/index.js",
+    "start": "node index.js",
     "build": "tsc -p .",
     "dev": "nodemon src/index.ts",
     "build:docker": "npm run build && docker build . -t daranix/telegram-to-notion-links",
