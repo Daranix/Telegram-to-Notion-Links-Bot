@@ -6,7 +6,7 @@ export const AppDataSource = new DataSource({
     type: "sqlite",
     database: process.env.STORAGE_PATH!,
     logging: true,
-    synchronize: true,
+    synchronize: process.env.ENVIRONMENT === 'dev',
     entities: [User],
     subscribers: [],
     migrations: [],
