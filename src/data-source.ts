@@ -4,11 +4,10 @@ import { User } from "./entities";
 
 export const AppDataSource = new DataSource({
     type: "sqlite",
-    database: "./.db/store.db",
+    database: process.env.STORAGE_PATH!,
     logging: true,
     synchronize: true,
     entities: [User],
     subscribers: [],
     migrations: [],
-    
 })

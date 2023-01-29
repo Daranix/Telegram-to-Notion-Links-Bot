@@ -1,10 +1,9 @@
 import * as dotenv from 'dotenv';
+// First load de configuration from .env file.
+dotenv.config();
 import { Telegraf } from 'telegraf';
 import { registerHandlers } from './handlers';
 import { AppDataSource } from "./data-source";
-import { User } from './entities';
-
-dotenv.config();
 
 
 
