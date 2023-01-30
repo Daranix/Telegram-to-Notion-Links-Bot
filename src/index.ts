@@ -26,6 +26,7 @@ async function main() {
     } else { // Production
         // Check docs for more options: https://telegraf.js.org/
         // Start webhook via launch method (preferred)
+        console.log(`Starting using webhook on ${process.env.WEBHOOK_DOMAIN}:${process.env.PORT}${process.env.WEBHOOK_PATH || ''}`)
         await bot.launch({
             webhook: {
                 // Public domain for webhook; e.g.: example.com
