@@ -131,11 +131,17 @@ export class TextHandler implements HandlerRegister {
         });
 
         // Get title
-        console.log("Getting title of link")
-        const response = await fetch(link);
-        const html = await response.text();
-        const $ = cheerioLoad(html);
-        const title = $('title').text();
+        let title = '';
+        try {
+            console.log("Getting title of link")
+            const response = await fetch(link);
+            const html = await response.text();
+            const $ = cheerioLoad(html);
+            title = $('title').text();
+        } catch(ex) {
+            console.log("Unable to get title link")
+        }
+
 
         console.log("Storing title: " + title)
         await client.pages.create({
