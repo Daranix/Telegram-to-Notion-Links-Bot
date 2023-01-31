@@ -26,7 +26,8 @@ async function main() {
     } else { // Production
         // Check docs for more options: https://telegraf.js.org/
         // Start webhook via launch method (preferred)
-        console.log(`Starting using webhook on ${process.env.WEBHOOK_DOMAIN}:${process.env.PORT}${process.env.WEBHOOK_PATH || ''}`)
+        const pathComponent = bot.secretPathComponent();
+        console.log(`Starting using webhook on ${process.env.WEBHOOK_DOMAIN}:${process.env.PORT}${process.env.WEBHOOK_PATH || ''}/${pathComponent}`)
         await bot.launch({
             webhook: {
                 // Public domain for webhook; e.g.: example.com
@@ -35,10 +36,11 @@ async function main() {
                 port: parseInt(process.env.PORT!),
                 // Optional path to listen for.
                 // `bot.secretPathComponent()` will be used by default
-                // hookPath: process.env.WEBHOOK_PATH,
+                hookPath: process.env.WEBHOOK_PATH + '/' + bot.secretPathComponent(),
             },
         });
     }
+
 
     console.log("Bot started.")
 }
