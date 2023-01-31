@@ -132,7 +132,7 @@ export class TextHandler implements HandlerRegister {
 
         // Get title
         let title = '';
-        try {
+        /*try {
             console.log("Getting title of link")
             const response = await fetch(link);
             const html = await response.text();
@@ -140,7 +140,7 @@ export class TextHandler implements HandlerRegister {
             title = $('title').text();
         } catch(ex) {
             console.log("Unable to get title link")
-        }
+        }*/
 
 
         console.log("Storing title: " + title)
