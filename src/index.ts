@@ -35,7 +35,7 @@ async function main() {
                 port: parseInt(process.env.PORT!),
                 // Optional path to listen for.
                 // `bot.secretPathComponent()` will be used by default
-                hookPath: process.env.WEBHOOK_PATH,
+                // hookPath: process.env.WEBHOOK_PATH,
             },
         });
     }
