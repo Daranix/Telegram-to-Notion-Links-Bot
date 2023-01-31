@@ -123,7 +123,7 @@ export class TextHandler implements HandlerRegister {
             tags = tags.map((e) => e.slice(1, e.length));
         }
 
-        console.log(tags);
+        console.log("Detected tags: " + tags);
 
         // Create database
         const client = new Client({
@@ -131,12 +131,13 @@ export class TextHandler implements HandlerRegister {
         });
 
         // Get title
-
+        console.log("Getting title of link")
         const response = await fetch(link);
         const html = await response.text();
         const $ = cheerioLoad(html);
         const title = $('title').text();
 
+        console.log("Storing title: " + title)
         await client.pages.create({
             parent: {
                 database_id: user.database!,
