@@ -1,5 +1,5 @@
 import { Context, Telegraf } from "telegraf";
-import { Update } from "typegram";
+import type { Update } from "telegraf/typings/core/types/typegram";
 import { User } from "../entities";
 import { HandlerRegister } from "../handler";
 

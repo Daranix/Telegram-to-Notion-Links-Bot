@@ -1,7 +1,7 @@
 import { Client } from "@notionhq/client";
 import { create } from "domain";
 import { Telegraf, Context } from "telegraf";
-import { Update } from "typegram";
+import { Update } from "telegraf/typings/core/types/typegram";
 import { User } from "../entities";
 import { ManagedError } from "../errors/managed-error";
 import { HandlerRegister } from "../handler";
@@ -57,10 +57,10 @@ export class TextHandler implements HandlerRegister {
     }
 
     async createNotionDatabase(user: User, pageId: string) {
-
         // Create database
         const client = new Client({
             auth: user.token,
+            notionVersion: "2025-09-03", // Specify the new API version
         });
 
         try {
@@ -83,25 +83,25 @@ export class TextHandler implements HandlerRegister {
                     }
                 }
             ],
-            properties: {
-                Name: {
-                    title: {}
-                },
-                Link: {
-                    url: {}
-                },
-                Tags: {
-                    multi_select: {}
-                },
+            initial_data_source: {
+                properties: {
+                    Name: {
+                        title: {}
+                    },
+                    Link: {
+                        url: {}
+                    },
+                    Tags: {
+                        multi_select: {}
+                    },
+                }
             }
         });
-
 
         user.page = pageId;
         user.setupstep = 3;
         user.database = createdDb.id;
         await user.save();
-
     }
 
     async appendRow(user: User, text: string) {
@@ -144,7 +144,7 @@ export class TextHandler implements HandlerRegister {
 
 
         console.log("Storing title: " + title)
-        await client.pages.create({
+        const createPageResponse = await client.pages.create({
             parent: {
                 database_id: user.database!,
             },

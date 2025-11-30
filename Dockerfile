@@ -1,4 +1,4 @@
-FROM node:lts-hydrogen
+FROM node:24-alpine
 WORKDIR /app
 COPY package*.json ./
 COPY dist/ ./

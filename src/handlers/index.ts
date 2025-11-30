@@ -1,5 +1,5 @@
 import { Telegraf, Context } from 'telegraf';
-import { Update } from 'typegram';
+import { Update } from 'telegraf/typings/core/types/typegram';
 import { ResetCommandHandler } from './reset.handler';
 import { StartCommandHandler } from './start.handler';
 import { TextHandler } from './text.handler';
